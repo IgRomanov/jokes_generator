@@ -1,0 +1,5 @@
+.App {
+  width: calc(100% -  400px);
+  margin: 0 auto;
+  font-size: 14px;
+}
