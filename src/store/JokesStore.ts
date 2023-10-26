@@ -1,9 +1,5 @@
 import { makeAutoObservable, toJS } from "mobx";
-
-interface JokeInterface {
-    id: number,
-    joke: string,
-}
+import { JokeInterface } from "../interfaces/jokesStoreInterfaces";
 
 export default class JokesStore {
     _jokes: Array<JokeInterface>;
