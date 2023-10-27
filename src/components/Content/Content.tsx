@@ -1,21 +1,19 @@
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import { Grid } from "@mui/material"
-import { useContext } from "react";
-import { Context } from "../..";
 import axios from "axios";
 import { observer } from "mobx-react-lite"
-import { JokesValueInterface, JokeInterface } from "../../interfaces/jokesStoreInterfaces";
+import {  JokeInterface } from "../../interfaces/jokesStoreInterfaces";
 import { jokesRequestInterface } from "../../interfaces/jokesRequestInterfaces";
 import { API_URL } from "../../utils/const";
+import JokesStore from "../../store/JokesStore";
 
 const Content = observer(() => {
-	const jokes: JokesValueInterface = useContext(Context)?.jokes!
 
 	const handleMoreClick = async () => {
 		try {
 			const { data }: { data: jokesRequestInterface } = await axios.get(`${API_URL}/jokes/random`);
-			jokes.setJoke([...jokes.allJokes(), { joke: data.value, id: data.id }]);
+			JokesStore.setJoke([...JokesStore.allJokes(), { joke: data.value, id: data.id }]);
 		} catch (e) {
 			console.log(e);
 		}
@@ -32,7 +30,7 @@ const Content = observer(() => {
 					MORE!!!!
 				</Button>
 			</Grid>
-			{jokes.allJokes().map((joke: JokeInterface) => (
+			{JokesStore.allJokes().map((joke: JokeInterface) => (
 				<Grid
 					key={joke.id}
 					sx={{

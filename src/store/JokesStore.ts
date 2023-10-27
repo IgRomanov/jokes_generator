@@ -1,7 +1,7 @@
 import { makeAutoObservable, toJS } from "mobx";
 import { JokeInterface } from "../interfaces/jokesStoreInterfaces";
 
-export default class JokesStore {
+class JokesStore {
     _jokes: Array<JokeInterface>;
     constructor() {
         this._jokes = [];
@@ -16,3 +16,5 @@ export default class JokesStore {
         return toJS(this._jokes);
     }
 }
+
+export default new JokesStore();
